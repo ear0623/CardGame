@@ -29,7 +29,7 @@ int main()
 	//PlayCharacter
 	std::vector<int> PlayerCards;
 	std::vector<int> AiCards;
-	int GetCard;
+	int GetCard = 0;
 
 
 	//게임 플레잉
@@ -65,15 +65,15 @@ int main()
 		//카드넘버
 		DrawCardNumber = CardDeck[DrawCard] % 13;
 
-		if (DrawCardNumber == 10)
+		if (DrawCardNumber == 11)
 		{
 			std::cout << "J";
 		}
-		else if (DrawCardNumber == 11)
+		else if (DrawCardNumber == 12)
 		{
 			std::cout << "Q";
 		}
-		else if (DrawCardNumber == 12)
+		else if (DrawCardNumber == 13)
 		{
 			std::cout << "K";
 		}
@@ -87,45 +87,51 @@ int main()
 			std::cout << DrawCardNumber;
 		}
 		std::cout << " " << std::endl;
-	}
 
-	for (int AddNumberCard=0; AddNumberCard<4; AddNumberCard++)
-	{
-		//점수 계산+뽑은 카드 저장
-		if (AddNumberCard % 2 == 0)
+		//카드data 저장
+
+		if ((float)(DrawCard / 2) == 0.0f)
 		{
-			if (DrawCardNumber == 11 || DrawCardNumber == 12 || DrawCardNumber == 13)
-			{
-				PlayerScore += 10;
-				AiCards.push_back(DrawCardNumber);
-
-
-			}
-			else
-			{
-				PlayerScore += DrawCardNumber;
-				PlayerCards.push_back(DrawCardNumber);
-			}
-			
+			PlayerCards.push_back(DrawCardNumber);
 		}
 		else
 		{
-			if (DrawCardNumber == 11 || DrawCardNumber == 12 || DrawCardNumber == 13)
-			{
-				AiScore += 10;
-				AiCards.push_back(DrawCardNumber);
-			}
-			else
-			{
-				AiScore += DrawCardNumber;
-				AiCards.push_back(DrawCardNumber);
-			}
-
-			
+			AiCards.push_back(DrawCardNumber);
 		}
-		std::cout << " " << std::endl;
-		
 	}
+
+	//점수계산
+	for (int HaveCard  = 0; HaveCard < 2; HaveCard++)
+	{
+		if (PlayerCards[HaveCard] == 11 || PlayerCards[HaveCard] == 12 || PlayerCards[HaveCard] == 13)
+		{
+			PlayerScore += 10;
+			std::cout << PlayerCards[HaveCard] << std::endl;
+		}
+		else
+		{
+			PlayerScore += PlayerCards[HaveCard];
+			std::cout << PlayerCards[HaveCard] << std::endl;
+
+		}
+		if (AiCards[HaveCard] == 11 || AiCards[HaveCard] == 12 || AiCards[HaveCard] == 13)
+		{
+			AiScore += 10;
+			std::cout << AiCards[HaveCard] << std::endl;
+		
+		}
+		else
+		{
+			AiScore += AiCards[HaveCard];
+			std::cout << AiCards[HaveCard] << std::endl;
+		}
+	}
+	
+
+	
+
+		std::cout << " " << std::endl;
+
 	std::cout <<"PlaerScore " << PlayerScore << " : " <<" AiScore " << AiScore << std::endl;
 	
 	//승패 계산
