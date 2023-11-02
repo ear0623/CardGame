@@ -18,6 +18,7 @@ public:
 private:
 	CardDeck Main_Card;
 	Player Main_Player;
+	Player Main_Dealer;
 	bool bIsRunning;
 
 };
@@ -29,6 +30,7 @@ Play::Play()
 
 Play::~Play()
 {
+
 }
 void Play::Init()
 {
@@ -53,7 +55,10 @@ void Play::Play_Game()
 		{
 			std::cout << "  " << " Player Card : ";
 			Main_Player.Addcard();
-
+			std::cout << "  " << " Dealer Card : ";
+			Main_Dealer.Addcard();
+			
+			
 		}
 		else if (Input == Text_Exit)
 		{
@@ -62,10 +67,10 @@ void Play::Play_Game()
 		}
 		else
 		{
-			std::cout << "  " << " Dealer Card : ";
-			Main_Player.Addcard();
+			
 		}
 	}
+	Main_Player.CalculateScore();
 
 
 
@@ -79,6 +84,7 @@ int main()
 
 	Play play;
 	play.Play_Game();
+	
 
 
 

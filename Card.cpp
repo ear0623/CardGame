@@ -1,15 +1,18 @@
 #include "Card.h"
 
 
+using namespace std;
+
+
 CardDeck::CardDeck()
 {
 	//카드 정의
-	std::string Shape[] = { "♠","♣","♡","◆" };
-	std::string Number[] = { "A","2","3","4","5","6","7","8","9","10","J","Q","K" };
+	string Shape[] = { "♠","♣","♡","◆" };
+	string Number[] = { "A","2","3","4","5","6","7","8","9","10","J","Q","K" };
 	//생성
-	for (const std::string& shape : Shape)
+	for (const string& shape : Shape)
 	{
-		for (const std::string& number : Number)
+		for (const string& number : Number)
 		{
 			Card.push_back(shape + number);
 
@@ -74,8 +77,9 @@ void CardDeck::Shuffle()
 
 Player::Player()
 {
-	//메모리 해제 필요
-	DrawCard = new std::vector<std::string>;
+	//메모리 해제 필요 포인터의 포이터가 됬다.
+	//string이랑 vector는 이미 배열이라 그냥 딜리트 해버려;
+	DrawCard = new std::vector<string>;
 	RandomIndex = 0;
 	LastNumber = 0;
 	Sum = 0;
@@ -85,7 +89,8 @@ Player::Player()
 
 Player::~Player()
 {
-	//delete[] DrawCard;
+	delete DrawCard;
+	DrawCard = nullptr;
 
 }
 
@@ -106,7 +111,6 @@ void Player::Addcard()
 	SaveNumber.push_back(LastNumber);
 
 	std::cout << LastCard << " ";
-
 	//제거
 	AddCard.Card.erase(AddCard.Card.begin() + RandomIndex);
 	//값도 같이
@@ -115,7 +119,7 @@ void Player::Addcard()
 	//erase 함수// 지운다~// pop_back() 지운다.
 
 
-
+	cout << LastNumber << endl;
 }
 
 void Player::CalculateScore()
@@ -129,6 +133,7 @@ void Player::CalculateScore()
 
 
 	}
+	std::cout << std::endl;
 	std::cout << Sum << std::endl;
 
 }

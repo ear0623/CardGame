@@ -17,6 +17,7 @@ public:
 
 	void Shuffle();
 
+protected:
 
 
 
@@ -43,5 +44,4 @@ private:
 	int LastNumber;
 	std::vector<int> SaveNumber;
 	int Sum;
-
 };
