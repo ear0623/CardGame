@@ -84,6 +84,8 @@ Player::Player()
 	LastNumber = 0;
 	Sum = 0;
 
+	ExtractNumber = LastNumber;
+
 
 }
 
@@ -94,12 +96,13 @@ Player::~Player()
 
 }
 
-void Player::Addcard()
+int Player::Addcard(int AddIndex)
 {
 	//매번 초기화
 	srand((unsigned int)time(nullptr));
 	//뽑기
-	RandomIndex = std::rand() % AddCard.Card.size();
+	RandomIndex = (std::rand() % AddCard.Card.size());
+	RandomIndex += AddIndex;
 
 	//DrawCard->push_back(AddCard.Card.back());//두줄로 나누는게 대입하기 더 편함
 	std::string LastCard = AddCard.Card[RandomIndex];
@@ -110,30 +113,23 @@ void Player::Addcard()
 	LastNumber = AddCard.Value[RandomIndex];
 	SaveNumber.push_back(LastNumber);
 
-	std::cout << LastCard << " ";
+	
 	//제거
 	AddCard.Card.erase(AddCard.Card.begin() + RandomIndex);
 	//값도 같이
 	AddCard.Value.erase(AddCard.Value.begin() + RandomIndex);
 	//값도 같이
 	//erase 함수// 지운다~// pop_back() 지운다.
+	cout << LastCard;
 
-
-	cout << LastNumber << endl;
+	Sum += LastNumber;
+	ExtractNumber = Sum;
+	return ExtractNumber;
 }
 
 void Player::CalculateScore()
 {
-
-	for (int i = 0; i < SaveNumber.size(); i++)
-	{
-
-
-		Sum += SaveNumber[i];
-
-
-	}
-	std::cout << std::endl;
-	std::cout << Sum << std::endl;
+	
+	cout << Sum;
 
 }

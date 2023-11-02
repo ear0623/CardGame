@@ -10,7 +10,8 @@ class CardDeck
 public:
 	CardDeck();
 	~CardDeck();
-
+	//PROPERTy
+	int ExtractNumber;
 	//동적할당
 	std::vector<std::string> Card;
 	std::vector<int> Value;
@@ -32,9 +33,10 @@ public:
 	Player();
 	~Player();
 
-	void Addcard();
+	int Addcard(int AddIndex);
 	void CalculateScore();
 
+protected:
 
 
 private:
